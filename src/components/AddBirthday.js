@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 // import DateTimePickerModal from "react-native-modal-datetime-picker";
-import DateTimePickerResult from '@react-native-community/datetimepicker';
+import RNDateTimePicker  from '@react-native-community/datetimepicker';
 import moment from "moment";
 
 export default function AddBirthday() {
@@ -16,10 +16,10 @@ export default function AddBirthday() {
    
 
     const handlerConfirm = (date)  => {
+        // function handlerConfirm(date) { 
         
         // if(e.type == "set"){
-            hideDatePicker();
-            var dateBirth = date;
+            let dateBirth = date;
             dateBirth.setHours(0);
             dateBirth.setMinutes(0);
             dateBirth.setSeconds(0);
@@ -28,6 +28,7 @@ export default function AddBirthday() {
             console.log(date);
             console.log(formData);
            
+            hideDatePicker();
 
 
         // }else {
@@ -65,14 +66,15 @@ export default function AddBirthday() {
                 {
                     isDatePicketVisible && (
 
-                    <DateTimePickerResult
-                        // display="spinner"
-                        // locale="es-ES"
-                        testID="dateTimePicker"
+                    <RNDateTimePicker 
+                        onChange={() => handlerConfirm(new Date())}
+                        display="spinner"
+                        locale="es-ES"
+                        // testID="dateTimePicker"
                         value={new Date()}
                         mode="date"
                         
-                        onChange={() => handlerConfirm(new Date())}
+                      
                        
                          
                     /> )
